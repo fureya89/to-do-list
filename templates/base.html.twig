@@ -15,17 +15,21 @@
     {% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light px-1">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ path('homepage') }}">
-                <p class="pl-2 d-inline font-weight-bold" style="color: #444;"> ToDo </p>
-            </a>
-            <div class="collapse navbar-collapse" id="navbar-collapsable">
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-1">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('homepage') }}">
+            <p class="pl-2 d-inline font-weight-bold" style="color: #444;"> ToDo </p>
+        </a>
+        <div class="collapse navbar-collapse" id="navbar-collapsable">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a class = "nav-link text-black-50" href = "{{ path('app_logout') }}">Log Out</a>
+            {% else %}
                 <a class="nav-link text-black-50" href="{{ path('app_login') }}">Log In</a>
-                <a href="#" class="btn btn-dark">Sign up</a>
-            </div>
+                <a href="{{ path('app_register') }}" class="btn btn-dark">Register</a>
+            {% endif %}
         </div>
-    </nav>
+    </div>
+</nav>
 {% block body %}{% endblock %}
 </body>
 </html>
